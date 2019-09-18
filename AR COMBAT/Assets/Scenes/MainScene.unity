@@ -602,7 +602,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 346562676}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1013258162}
+        m_MethodName: Kick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &346562676
@@ -1047,7 +1058,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 535151969}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1013258162}
+        m_MethodName: Punch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &535151969
@@ -2833,11 +2855,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dreyar_by_M._Aure (2)
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 6ff0c284ccb92544881351aaa13f0af6,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 2c64211cf93a7c34ab9121153d44b4d2, type: 2}
     - target: {fileID: -4216859302048453862, guid: 6ff0c284ccb92544881351aaa13f0af6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2908,6 +2925,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.053
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 6ff0c284ccb92544881351aaa13f0af6,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2c64211cf93a7c34ab9121153d44b4d2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ff0c284ccb92544881351aaa13f0af6, type: 3}
 --- !u!1 &1767166108

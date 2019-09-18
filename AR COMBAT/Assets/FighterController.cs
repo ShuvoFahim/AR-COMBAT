@@ -7,10 +7,11 @@ public class FighterController : MonoBehaviour
     // Start is called before the first frame update
 
     public Transform enemyTarget;
-    Animator anim;
+    static Animator anim;
 
     public static bool mvBack = false;
     public static bool mvFwrd = false;
+    public static bool IsAttack = false;
     public static FighterController instance;
 
     void Awake()
@@ -23,32 +24,76 @@ public class FighterController : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
     void Update()
+
     {
-        if (mvBack == true)
-        {
-            anim.SetTrigger("wkBACK");
-        }
-        else if (mvFwrd == false) {
-            anim.SetTrigger("Idle");
-            anim.ResetTrigger("wkBACK");
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("fight_idle")) {
 
+            IsAttack = false;
         }
 
-        if (mvFwrd == true)
+        if (IsAttack == false)
         {
-            anim.SetTrigger("wkFWRD");
-        }
-        else if (mvBack == false )
-        {
-            anim.SetTrigger("Idle");
-            anim.ResetTrigger("wkFWRD");
+
+            if (mvBack == true)
+            {
+                anim.SetTrigger("wkBACK");
+                anim.ResetTrigger("Idle");
+                anim.ResetTrigger("wkFWRD");
+
+            }
+            else if (mvFwrd == true)
+            {
+                anim.SetTrigger("wkFWRD");
+                anim.ResetTrigger("Idle");
+                anim.ResetTrigger("wkBACK");
+            }
+            else
+            {
+                anim.SetTrigger("Idle");
+                anim.ResetTrigger("wkFWRD");
+                anim.ResetTrigger("wkBACK");
+
+            }
+
 
         }
+    }
+
+    public void Punch() {
+
+        IsAttack = true;
+
+        anim.ResetTrigger("Idle");
+        anim.SetTrigger("Punch");
 
 
     }
+
+    public void Kick()
+    {
+
+        IsAttack = true;
+
+        anim.ResetTrigger("Idle");
+        anim.SetTrigger("Kick");
+
+
+    }
+
+    public void React()
+    {
+
+        IsAttack = true;
+
+        anim.ResetTrigger("Idle");
+        anim.SetTrigger("React");
+
+
+    }
+
 }
