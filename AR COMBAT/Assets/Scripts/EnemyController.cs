@@ -16,6 +16,9 @@ public class EnemyController : MonoBehaviour
 
     public int EnemyHealth = 100;
 
+    public AudioClip[] Clip;
+    AudioSource Audio;
+
     private void SetterFOrBoxCollider(bool State)
     {
         C[0].enabled = State;
@@ -39,7 +42,17 @@ public class EnemyController : MonoBehaviour
     {
         anim1 = GetComponent<Animator>();
         SetterFOrBoxCollider(false);
+        Audio = GetComponent<AudioSource>();
     }
+
+    void PlayAudio(int AudioIndex)
+    {
+
+        Audio.clip = Clip[AudioIndex];
+        Audio.Play();
+
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -63,26 +76,43 @@ public class EnemyController : MonoBehaviour
         {
             anim1.SetTrigger("WalkFRWD");
             SetterFOrBoxCollider(false);
+            Audio.Stop();
         }
         else {
              anim1.ResetTrigger("WalkFRWD");
+            
              }
 
-        if (direction1.magnitude < 13f && direction1.magnitude > 9f && GameController.AllowMovement == true)
+        if (direction1.magnitude < 13f && direction1.magnitude > 8f && GameController.AllowMovement == true)
         {
 
-            anim1.SetTrigger("KickEnemy");
+            
             SetterFOrBoxCollider(true);
+            if ( !Audio.isPlaying && !anim1.GetCurrentAnimatorStateInfo(0).IsName("roundhouse_kick 2") )
+            {
+
+                anim1.SetTrigger("KickEnemy");
+                PlayAudio(1);
+
+            }
         }
         else {
 
             anim1.ResetTrigger("KickEnemy");
         }
-        if (direction1.magnitude < 7f && direction1.magnitude > 4f && GameController.AllowMovement == true)
+        if (direction1.magnitude < 6f && direction1.magnitude > 4f && GameController.AllowMovement == true)
         {
 
-            anim1.SetTrigger("Punch");
+            
             SetterFOrBoxCollider(true);
+            if (!Audio.isPlaying && !anim1.GetCurrentAnimatorStateInfo(0).IsName("cross_punch"))
+            {
+
+                anim1.SetTrigger("Punch");
+                PlayAudio(0);
+
+            }
+
         }
         else
         {
@@ -93,11 +123,12 @@ public class EnemyController : MonoBehaviour
         {
 
             anim1.SetTrigger("WalkBACK");
-            SetterFOrBoxCollider(true);
+            SetterFOrBoxCollider(false);
+            Audio.Stop();
         }
         else
         {
-
+            
             anim1.ResetTrigger("WalkBACK");
         }
 
@@ -116,10 +147,12 @@ public class EnemyController : MonoBehaviour
         {
             
             EnemyKnockOut();
+            PlayAudio(3);
         }
         else
         {
             anim1.SetTrigger("React");
+            PlayAudio(2);
         }
     }
 
@@ -127,6 +160,7 @@ public class EnemyController : MonoBehaviour
 
         anim1.SetTrigger("KnockOut");
         SetterFOrBoxCollider(false);
+        
 
     }
 

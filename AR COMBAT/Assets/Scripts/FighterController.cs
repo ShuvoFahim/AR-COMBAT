@@ -23,6 +23,10 @@ public class FighterController : MonoBehaviour
 
     private Vector3 direction;
 
+    public AudioClip[] Clip;
+    AudioSource Audio;
+
+
     void Awake()
     {
         if (instance == null) {
@@ -34,8 +38,17 @@ public class FighterController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         SetterFOrBoxCollider(false);
+        Audio = GetComponent<AudioSource>();
         
     }
+
+    void PlayAudio(int AudioIndex) {
+
+        Audio.clip = Clip[AudioIndex];
+        Audio.Play();
+
+    }
+
 
     private void SetterFOrBoxCollider(bool State) {
         C[0].enabled = State;
@@ -119,6 +132,7 @@ public class FighterController : MonoBehaviour
         
         anim.ResetTrigger("Idle");
         anim.SetTrigger("Punch");
+        PlayAudio(0);
 
 
     }
@@ -130,6 +144,7 @@ public class FighterController : MonoBehaviour
         
         anim.ResetTrigger("Idle");
         anim.SetTrigger("Kick");
+        PlayAudio(1);
 
 
     }
@@ -141,7 +156,7 @@ public class FighterController : MonoBehaviour
         IsAttack = true;
         SetterFOrBoxCollider(false);
 
-
+        
         PLayerHealth = PLayerHealth - 10;
 
         PlayerHB.value = PLayerHealth;
@@ -150,11 +165,13 @@ public class FighterController : MonoBehaviour
         {
             
             PlayerKnockOut();
+            PlayAudio(3);
         }
         else {
 
             anim.ResetTrigger("Idle");
             anim.SetTrigger("React");
+            PlayAudio(2);
         }
 
 
@@ -164,6 +181,7 @@ public class FighterController : MonoBehaviour
 
         SetterFOrBoxCollider(false);
         anim.SetTrigger("KnockOut");
+       
        
 
     }
