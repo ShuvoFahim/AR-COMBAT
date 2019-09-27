@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FighterController : MonoBehaviour
 {
@@ -14,6 +15,14 @@ public class FighterController : MonoBehaviour
     public static bool IsAttack = false;
     public static FighterController instance;
 
+    public Slider PlayerHB;
+
+    public int PLayerHealth=100;
+
+    public BoxCollider[] C; 
+
+    private Vector3 direction;
+
     void Awake()
     {
         if (instance == null) {
@@ -24,26 +33,54 @@ public class FighterController : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        SetterFOrBoxCollider(false);
         
+    }
+
+    private void SetterFOrBoxCollider(bool State) {
+        C[0].enabled = State;
+        C[1].enabled = State;
+
     }
 
     // Update is called once per frame
     void Update()
 
     {
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("fight_idle"))
+        {
+            direction = enemyTarget.position - this.transform.position;
+
+            direction.y = 0;
+
+            this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), .3f); 
+
+        }
+
+        
+
+      
+
+
+
+
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("fight_idle")) {
 
             IsAttack = false;
+            SetterFOrBoxCollider(false);
         }
 
         if (IsAttack == false)
         {
+
 
             if (mvBack == true)
             {
                 anim.SetTrigger("wkBACK");
                 anim.ResetTrigger("Idle");
                 anim.ResetTrigger("wkFWRD");
+                SetterFOrBoxCollider(false);
 
             }
             else if (mvFwrd == true)
@@ -51,6 +88,7 @@ public class FighterController : MonoBehaviour
                 anim.SetTrigger("wkFWRD");
                 anim.ResetTrigger("Idle");
                 anim.ResetTrigger("wkBACK");
+
             }
             else
             {
@@ -58,16 +96,27 @@ public class FighterController : MonoBehaviour
                 anim.ResetTrigger("wkFWRD");
                 anim.ResetTrigger("wkBACK");
 
-            }
 
+            }
+        }
+
+        else if (IsAttack == true)
+        {
+
+            SetterFOrBoxCollider(true);
 
         }
+
+
+
+        
+       
     }
 
     public void Punch() {
 
         IsAttack = true;
-
+        
         anim.ResetTrigger("Idle");
         anim.SetTrigger("Punch");
 
@@ -78,7 +127,7 @@ public class FighterController : MonoBehaviour
     {
 
         IsAttack = true;
-
+        
         anim.ResetTrigger("Idle");
         anim.SetTrigger("Kick");
 
@@ -88,12 +137,36 @@ public class FighterController : MonoBehaviour
     public void React()
     {
 
+        
         IsAttack = true;
+        SetterFOrBoxCollider(false);
 
-        anim.ResetTrigger("Idle");
-        anim.SetTrigger("React");
+
+        PLayerHealth = PLayerHealth - 10;
+
+        PlayerHB.value = PLayerHealth;
+
+        if (PLayerHealth < 0)
+        {
+            
+            PlayerKnockOut();
+        }
+        else {
+
+            anim.ResetTrigger("Idle");
+            anim.SetTrigger("React");
+        }
 
 
     }
+
+    public void PlayerKnockOut() {
+
+        SetterFOrBoxCollider(false);
+        anim.SetTrigger("KnockOut");
+       
+
+    }
+   
 
 }

@@ -10,6 +10,11 @@ public class FixPanel : MonoBehaviour {
     public GameObject Title;
     public GameObject QualityMeter;
 
+    public GameObject PlayerHB;
+    public GameObject EnemyHB;
+
+    
+
 	private string CurrentScene;
 
 
@@ -23,6 +28,11 @@ public class FixPanel : MonoBehaviour {
 			CameraButton.SetActive (false);
             Title.SetActive(false);
             QualityMeter.SetActive(false);
+            PlayerHB.SetActive(true);
+            EnemyHB.SetActive(true);
+
+            
+            
             
 		}
 	}
