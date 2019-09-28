@@ -100,7 +100,7 @@ public class EnemyController : MonoBehaviour
 
             anim1.ResetTrigger("KickEnemy");
         }
-        if (direction1.magnitude < 6f && direction1.magnitude > 4f && GameController.AllowMovement == true)
+        if (direction1.magnitude < 5f && direction1.magnitude > 4f && GameController.AllowMovement == true)
         {
 
             
@@ -119,7 +119,7 @@ public class EnemyController : MonoBehaviour
 
             anim1.ResetTrigger("Punch");
         }
-        if (direction1.magnitude > 0f && direction1.magnitude < 4f && GameController.AllowMovement == true)
+        if (direction1.magnitude > 0f && direction1.magnitude < 3f && GameController.AllowMovement == true)
         {
 
             anim1.SetTrigger("WalkBACK");
@@ -157,15 +157,31 @@ public class EnemyController : MonoBehaviour
     }
 
     public void EnemyKnockOut() {
+        GameController.AllowMovement = false;
+        EnemyHealth = 100;
+        EnemyHB.value = 100;
+
 
         anim1.SetTrigger("KnockOut");
         SetterFOrBoxCollider(false);
         GameController.instance.PlayerScoreUpdate();
         GameController.instance.OnScreenPoinPupdate();
-        
-        
+        GameController.instance.Rounds();
 
+        if (GameController.PlayerScore == 2)
+        {
+            GameController.instance.DoReset();
+        }
+        else {
+
+            StartCoroutine(resetCharacters());
+
+        }
+     }
+    IEnumerator resetCharacters() {
+        yield return new WaitForSeconds(4);
+        //reset Pos
+        GameController.AllowMovement = true;
     }
-
 
 }

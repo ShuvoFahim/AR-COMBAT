@@ -26,6 +26,8 @@ public class FighterController : MonoBehaviour
     public AudioClip[] Clip;
     AudioSource Audio;
 
+    private Vector3 PlayerPosition;
+
 
     void Awake()
     {
@@ -39,7 +41,7 @@ public class FighterController : MonoBehaviour
         anim = GetComponent<Animator>();
         SetterFOrBoxCollider(false);
         Audio = GetComponent<AudioSource>();
-        
+        PlayerPosition = transform.position;
     }
 
     void PlayAudio(int AudioIndex) {
@@ -178,17 +180,32 @@ public class FighterController : MonoBehaviour
     }
 
     public void PlayerKnockOut() {
+        GameController.AllowMovement = false;
+        PLayerHealth = 100;
+        PlayerHB.value = 100;
+
 
         SetterFOrBoxCollider(false);
         anim.SetTrigger("KnockOut");
         GameController.instance.EnemyScoreUpdate();
         GameController.instance.OnScreenPoinPupdate();
         GameController.instance.Rounds();
+        if (GameController.EnemyScore == 2)
+        {
+            GameController.instance.DoReset();
+        }
+        else
+        {
+            StartCoroutine(resetCharacters());
 
-
-
-
+        }
     }
-   
+    IEnumerator resetCharacters()
+    {
+        yield return new WaitForSeconds(4);
+        GameObject[] TheClone = GameObject.FindGameObjectsWithTag("");
+        GameController.AllowMovement = true;
+    }
+
 
 }
