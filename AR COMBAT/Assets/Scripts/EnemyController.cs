@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
 
     public AudioClip[] Clip;
     AudioSource Audio;
+    private Vector3 EnemyPosition;
 
     private void SetterFOrBoxCollider(bool State)
     {
@@ -43,6 +44,7 @@ public class EnemyController : MonoBehaviour
         anim1 = GetComponent<Animator>();
         SetterFOrBoxCollider(false);
         Audio = GetComponent<AudioSource>();
+        EnemyPosition = transform.position;
     }
 
     void PlayAudio(int AudioIndex)
@@ -70,7 +72,7 @@ public class EnemyController : MonoBehaviour
             
         }
 
-       Debug.Log(direction1.magnitude);
+      // Debug.Log(direction1.magnitude);
 
         if (direction1.magnitude > 13f && GameController.AllowMovement == true)
         {
@@ -180,7 +182,17 @@ public class EnemyController : MonoBehaviour
      }
     IEnumerator resetCharacters() {
         yield return new WaitForSeconds(4);
-        //reset Pos
+        GameObject[] TheClone = GameObject.FindGameObjectsWithTag("Enemy");
+        Transform t = TheClone[4].GetComponent<Transform>();
+        Debug.Log(TheClone[0]);
+        Debug.Log(TheClone[1]);
+        Debug.Log(TheClone[2]);
+        Debug.Log(TheClone[3]);
+        Debug.Log(TheClone[4]);
+        Debug.Log(TheClone[5]);
+
+        t.position = EnemyPosition;
+        t.position = new Vector3(t.position.x, 0.004f, t.position.z);
         GameController.AllowMovement = true;
     }
 

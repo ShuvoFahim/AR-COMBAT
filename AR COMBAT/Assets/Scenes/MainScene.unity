@@ -1419,21 +1419,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arissa
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1d0c01bd21ad742eebadb7ead404dfdf, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 100088, guid: 1d0c01bd21ad742eebadb7ead404dfdf, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1d0c01bd21ad742eebadb7ead404dfdf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.789
+      value: -0.937
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1d0c01bd21ad742eebadb7ead404dfdf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.034273
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1d0c01bd21ad742eebadb7ead404dfdf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.00047557
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1d0c01bd21ad742eebadb7ead404dfdf, type: 3}
       propertyPath: m_LocalRotation.x
@@ -5254,6 +5258,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dreyar_by_M._Aure (2)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 6ff0c284ccb92544881351aaa13f0af6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: -3634151650100601442, guid: 6ff0c284ccb92544881351aaa13f0af6,
         type: 3}
       propertyPath: m_IsActive
@@ -5267,17 +5276,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 6ff0c284ccb92544881351aaa13f0af6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.809
+      value: 0.976
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6ff0c284ccb92544881351aaa13f0af6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.034273
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6ff0c284ccb92544881351aaa13f0af6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.00047557
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6ff0c284ccb92544881351aaa13f0af6,
         type: 3}

@@ -55,17 +55,17 @@ public class GameController : MonoBehaviour
         PlayerScore = 0;
         EnemyScore = 0;
 
-        Points[0].SetActive(false);
-        Points[1].SetActive(false);
-        Points[2].SetActive(false);
-        Points[3].SetActive(false);
+       
 
         StartCoroutine(ResartGame());
     }
 
     IEnumerator ResartGame() {
         yield return new WaitForSeconds(4.5f);
-
+        Points[0].SetActive(false);
+        Points[1].SetActive(false);
+        Points[2].SetActive(false);
+        Points[3].SetActive(false);
         AllowMovement = true;
         StartCoroutine(ResartRoundAudio());
 

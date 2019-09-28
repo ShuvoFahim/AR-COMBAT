@@ -86,42 +86,46 @@ public class FighterController : MonoBehaviour
             SetterFOrBoxCollider(false);
         }
 
-        if (IsAttack == false)
+        if (GameController.AllowMovement == true)
         {
-
-
-            if (mvBack == true)
+            if (IsAttack == false)
             {
-                anim.SetTrigger("wkBACK");
-                anim.ResetTrigger("Idle");
-                anim.ResetTrigger("wkFWRD");
+
                 SetterFOrBoxCollider(false);
+                if (mvBack == true)
+                {
+                    anim.SetTrigger("wkBACK");
+                    anim.ResetTrigger("Idle");
+                    anim.ResetTrigger("wkFWRD");
+                    
 
+                }
+                else if (mvFwrd == true)
+                {
+                    anim.SetTrigger("wkFWRD");
+                    anim.ResetTrigger("Idle");
+                    anim.ResetTrigger("wkBACK");
+                  
+
+                }
+                else
+                {
+                   
+                    anim.SetTrigger("Idle");
+                    anim.ResetTrigger("wkFWRD");
+                    anim.ResetTrigger("wkBACK");
+
+
+                }
             }
-            else if (mvFwrd == true)
-            {
-                anim.SetTrigger("wkFWRD");
-                anim.ResetTrigger("Idle");
-                anim.ResetTrigger("wkBACK");
 
-            }
-            else
+            else if (IsAttack == true)
             {
-                anim.SetTrigger("Idle");
-                anim.ResetTrigger("wkFWRD");
-                anim.ResetTrigger("wkBACK");
 
+                SetterFOrBoxCollider(true);
 
             }
         }
-
-        else if (IsAttack == true)
-        {
-
-            SetterFOrBoxCollider(true);
-
-        }
-
 
 
         
@@ -155,7 +159,7 @@ public class FighterController : MonoBehaviour
     {
 
         
-        IsAttack = true;
+        //IsAttack = true;
         SetterFOrBoxCollider(false);
 
         
@@ -163,7 +167,7 @@ public class FighterController : MonoBehaviour
 
         PlayerHB.value = PLayerHealth;
 
-        if (PLayerHealth < 0)
+        if (PLayerHealth < 10)
         {
             
             PlayerKnockOut();
@@ -203,7 +207,16 @@ public class FighterController : MonoBehaviour
     IEnumerator resetCharacters()
     {
         yield return new WaitForSeconds(4);
-        GameObject[] TheClone = GameObject.FindGameObjectsWithTag("");
+        GameObject[] TheClone = GameObject.FindGameObjectsWithTag("Player");
+        Transform t = TheClone[5].GetComponent<Transform>();
+        
+
+        anim.SetTrigger("Idle");
+        anim.ResetTrigger("KnockOut");
+        t.position = PlayerPosition;
+        t.position = new Vector3(t.position.x, 0.00001f, t.position.z);
+
+         
         GameController.AllowMovement = true;
     }
 
