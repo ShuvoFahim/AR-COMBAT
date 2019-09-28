@@ -23,6 +23,9 @@ public class GameController : MonoBehaviour
     public static int PlayerScore = 0;
     public static int EnemyScore = 0;
 
+    public GameObject[] Points;
+    public static int Round = 0;
+
     
 
 
@@ -124,4 +127,42 @@ public class GameController : MonoBehaviour
 
 
     }
+
+    public void OnScreenPoinPupdate() {
+        if (PlayerScore == 1)
+        {
+            Points[0].SetActive(true);
+        }
+        else if (PlayerScore == 2)
+        {
+            Points[1].SetActive(true);
+        }
+        else if (EnemyScore == 1)
+        {
+            Points[2].SetActive(true);
+        }
+        else if (EnemyScore == 2) {
+
+            Points[3].SetActive(true);
+
+        }
+    }
+
+    public void Rounds() {
+        Round = PlayerScore + EnemyScore;
+        if (Round == 1)
+        {
+            PlayAudio(3);
+
+        }
+
+        if (Round == 2 && PlayerScore != 2 && EnemyScore != 2) {
+
+            PlayAudio(4);
+
+        }
+}
+
+
+
 }

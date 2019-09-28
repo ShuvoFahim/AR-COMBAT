@@ -181,8 +181,12 @@ public class FighterController : MonoBehaviour
 
         SetterFOrBoxCollider(false);
         anim.SetTrigger("KnockOut");
-       
-       
+        GameController.instance.EnemyScoreUpdate();
+        GameController.instance.OnScreenPoinPupdate();
+        GameController.instance.Rounds();
+
+
+
 
     }
    

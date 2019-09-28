@@ -160,6 +160,9 @@ public class EnemyController : MonoBehaviour
 
         anim1.SetTrigger("KnockOut");
         SetterFOrBoxCollider(false);
+        GameController.instance.PlayerScoreUpdate();
+        GameController.instance.OnScreenPoinPupdate();
+        
         
 
     }
