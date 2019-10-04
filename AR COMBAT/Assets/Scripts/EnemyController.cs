@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     AudioSource Audio;
     private Vector3 EnemyPosition;
 
-    private void SetterFOrBoxCollider(bool State)
+    public void EnemySetterFOrBoxCollider(bool State)
     {
         C[0].enabled = State;
         C[1].enabled = State;
@@ -42,7 +42,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         anim1 = GetComponent<Animator>();
-        SetterFOrBoxCollider(false);
+        EnemySetterFOrBoxCollider(false);
         Audio = GetComponent<AudioSource>();
         EnemyPosition = transform.position;
     }
@@ -77,7 +77,7 @@ public class EnemyController : MonoBehaviour
         if (direction1.magnitude > 13f && GameController.AllowMovement == true)
         {
             anim1.SetTrigger("WalkFRWD");
-            SetterFOrBoxCollider(false);
+            EnemySetterFOrBoxCollider(false);
             Audio.Stop();
         }
         else {
@@ -88,8 +88,8 @@ public class EnemyController : MonoBehaviour
         if (direction1.magnitude < 13f && direction1.magnitude > 8f && GameController.AllowMovement == true)
         {
 
-            
-            SetterFOrBoxCollider(true);
+
+            EnemySetterFOrBoxCollider(true);
             if ( !Audio.isPlaying && !anim1.GetCurrentAnimatorStateInfo(0).IsName("roundhouse_kick 2") )
             {
 
@@ -105,8 +105,8 @@ public class EnemyController : MonoBehaviour
         if (direction1.magnitude < 5f && direction1.magnitude > 4f && GameController.AllowMovement == true)
         {
 
-            
-            SetterFOrBoxCollider(true);
+
+            EnemySetterFOrBoxCollider(true);
             if (!Audio.isPlaying && !anim1.GetCurrentAnimatorStateInfo(0).IsName("cross_punch"))
             {
 
@@ -125,7 +125,7 @@ public class EnemyController : MonoBehaviour
         {
 
             anim1.SetTrigger("WalkBACK");
-            SetterFOrBoxCollider(false);
+            EnemySetterFOrBoxCollider(false);
             Audio.Stop();
         }
         else
@@ -140,7 +140,7 @@ public class EnemyController : MonoBehaviour
 
     public void EnemyReact() {
 
-        SetterFOrBoxCollider(false);
+        EnemySetterFOrBoxCollider(false);
         EnemyHealth = EnemyHealth - 10;
 
         EnemyHB.value = EnemyHealth;
@@ -148,48 +148,61 @@ public class EnemyController : MonoBehaviour
         if (EnemyHealth < 10)
         {
             
+
+            FighterController.instance.PlayerSetterFOrBoxCollider(false);
             EnemyKnockOut();
             PlayAudio(3);
+           
+            
         }
         else
         {
             anim1.SetTrigger("React");
+       
             PlayAudio(2);
         }
     }
 
     public void EnemyKnockOut() {
-        GameController.AllowMovement = false;
         EnemyHealth = 100;
         EnemyHB.value = 100;
 
+        GameController.AllowMovement = false;
 
-        anim1.SetTrigger("KnockOut");
-        SetterFOrBoxCollider(false);
         GameController.instance.PlayerScoreUpdate();
         GameController.instance.OnScreenPoinPupdate();
+
+        FighterController.instance.PlayerSetterFOrBoxCollider(false);
+        EnemySetterFOrBoxCollider(false);
+
+
+
+        anim1.SetTrigger("KnockOut");
+        EnemySetterFOrBoxCollider(false);
+        
         GameController.instance.Rounds();
 
-        if (GameController.PlayerScore == 2)
+        if (GameController.instance.PlayerScore == 2)
         {
             GameController.instance.DoReset();
+            resetCharacters();
         }
         else {
 
             StartCoroutine(resetCharacters());
 
         }
-     }
+        GameController.instance.OnScreenPoinPupdate();
+    }
     IEnumerator resetCharacters() {
         yield return new WaitForSeconds(4);
+
+        EnemyHealth = 100;
+        EnemyHB.value = 100;
+
         GameObject[] TheClone = GameObject.FindGameObjectsWithTag("Enemy");
         Transform t = TheClone[4].GetComponent<Transform>();
-        Debug.Log(TheClone[0]);
-        Debug.Log(TheClone[1]);
-        Debug.Log(TheClone[2]);
-        Debug.Log(TheClone[3]);
-        Debug.Log(TheClone[4]);
-        Debug.Log(TheClone[5]);
+        
 
         t.position = EnemyPosition;
         t.position = new Vector3(t.position.x, 0.004f, t.position.z);

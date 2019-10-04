@@ -20,8 +20,8 @@ public class GameController : MonoBehaviour
     public AudioClip[] Clip;
     private AudioSource Audio;
 
-    public static int PlayerScore = 0;
-    public static int EnemyScore = 0;
+    public int PlayerScore = 0;
+    public int EnemyScore = 0;
 
     public GameObject[] Points;
     public static int Round = 0;
@@ -52,6 +52,20 @@ public class GameController : MonoBehaviour
     }
 
     public void DoReset() {
+        if (PlayerScore == 2) {
+            PlayAudio(6);
+
+        }
+        else {
+            PlayAudio(5);
+
+        }
+        FighterController.instance.PlayerHB.value = 100;
+        FighterController.instance.PLayerHealth = 100;
+
+        EnemyController.instance.EnemyHB.value = 100;
+        EnemyController.instance.EnemyHealth = 100;
+
         PlayerScore = 0;
         EnemyScore = 0;
 
@@ -72,8 +86,8 @@ public class GameController : MonoBehaviour
     }
 
     IEnumerator ResartRoundAudio() {
-        yield return new WaitForSeconds(0f);
-        StartCoroutine(Round1()); 
+        yield return new WaitForSeconds(1f);
+        PlayAudio(0); 
 
 
     }
@@ -114,7 +128,7 @@ public class GameController : MonoBehaviour
     public void EnemyScoreUpdate() {
 
         EnemyScore++;
-
+        //Debug.Log(EnemyScore);
     }
 
     IEnumerator Round1() {
@@ -160,12 +174,15 @@ public class GameController : MonoBehaviour
         {
             Points[1].SetActive(true);
         }
-        else if (EnemyScore == 1)
+
+        if (EnemyScore == 1)
         {
+            Debug.Log(EnemyScore);
             Points[2].SetActive(true);
         }
         else if (EnemyScore == 2) {
 
+            Debug.Log(EnemyScore);
             Points[3].SetActive(true);
 
         }
@@ -182,6 +199,7 @@ public class GameController : MonoBehaviour
         if (Round == 2 && PlayerScore != 2 && EnemyScore != 2) {
 
             PlayAudio(4);
+           
 
         }
 }

@@ -17,9 +17,9 @@ public class FighterController : MonoBehaviour
 
     public Slider PlayerHB;
 
-    public int PLayerHealth=100;
+    public int PLayerHealth = 100;
 
-    public BoxCollider[] C; 
+    public BoxCollider[] C;
 
     private Vector3 direction;
 
@@ -33,13 +33,13 @@ public class FighterController : MonoBehaviour
     {
         if (instance == null) {
             instance = this;
-        }    
+        }
     }
 
     void Start()
     {
         anim = GetComponent<Animator>();
-        SetterFOrBoxCollider(false);
+        PlayerSetterFOrBoxCollider(false);
         Audio = GetComponent<AudioSource>();
         PlayerPosition = transform.position;
     }
@@ -52,7 +52,7 @@ public class FighterController : MonoBehaviour
     }
 
 
-    private void SetterFOrBoxCollider(bool State) {
+    public void PlayerSetterFOrBoxCollider(bool State) {
         C[0].enabled = State;
         C[1].enabled = State;
 
@@ -69,13 +69,13 @@ public class FighterController : MonoBehaviour
 
             direction.y = 0;
 
-            this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), .3f); 
+            this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), .3f);
 
         }
 
-        
 
-      
+
+
 
 
 
@@ -83,7 +83,7 @@ public class FighterController : MonoBehaviour
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("fight_idle")) {
 
             IsAttack = false;
-            SetterFOrBoxCollider(false);
+            PlayerSetterFOrBoxCollider(false);
         }
 
         if (GameController.AllowMovement == true)
@@ -91,13 +91,13 @@ public class FighterController : MonoBehaviour
             if (IsAttack == false)
             {
 
-                SetterFOrBoxCollider(false);
+                PlayerSetterFOrBoxCollider(false);
                 if (mvBack == true)
                 {
                     anim.SetTrigger("wkBACK");
                     anim.ResetTrigger("Idle");
                     anim.ResetTrigger("wkFWRD");
-                    
+
 
                 }
                 else if (mvFwrd == true)
@@ -105,12 +105,12 @@ public class FighterController : MonoBehaviour
                     anim.SetTrigger("wkFWRD");
                     anim.ResetTrigger("Idle");
                     anim.ResetTrigger("wkBACK");
-                  
+
 
                 }
                 else
                 {
-                   
+
                     anim.SetTrigger("Idle");
                     anim.ResetTrigger("wkFWRD");
                     anim.ResetTrigger("wkBACK");
@@ -122,47 +122,51 @@ public class FighterController : MonoBehaviour
             else if (IsAttack == true)
             {
 
-                SetterFOrBoxCollider(true);
+                PlayerSetterFOrBoxCollider(true);
 
             }
         }
 
 
-        
-       
+
+
     }
-
+    
     public void Punch() {
+        if (WalkBackController.MB == false && WalkFwrdController.MF==false)
+        {
+            IsAttack = true;
 
-        IsAttack = true;
-        
-        anim.ResetTrigger("Idle");
-        anim.SetTrigger("Punch");
-        PlayAudio(0);
+            anim.ResetTrigger("Idle");
+            anim.SetTrigger("Punch");
+            PlayAudio(0);
+            Debug.Log(WalkBackController.MB);
+            Debug.Log(WalkFwrdController.MF);
 
+        }
 
     }
 
     public void Kick()
     {
+        if (WalkBackController.MB == false && WalkFwrdController.MF == false )
+        {
+            IsAttack = true;
 
-        IsAttack = true;
-        
-        anim.ResetTrigger("Idle");
-        anim.SetTrigger("Kick");
-        PlayAudio(1);
-
-
+            anim.ResetTrigger("Idle");
+            anim.SetTrigger("Kick");
+            PlayAudio(1);
+            Debug.Log(WalkBackController.MB);
+            Debug.Log(WalkFwrdController.MF);
+        }
     }
 
     public void React()
     {
 
-        
-        //IsAttack = true;
-        SetterFOrBoxCollider(false);
 
-        
+        //IsAttack = true;
+        PlayerSetterFOrBoxCollider(false);
         PLayerHealth = PLayerHealth - 10;
 
         PlayerHB.value = PLayerHealth;
@@ -170,8 +174,12 @@ public class FighterController : MonoBehaviour
         if (PLayerHealth < 10)
         {
             
+
+            EnemyController.instance.EnemySetterFOrBoxCollider(false);
             PlayerKnockOut();
             PlayAudio(3);
+           
+            
         }
         else {
 
@@ -184,29 +192,46 @@ public class FighterController : MonoBehaviour
     }
 
     public void PlayerKnockOut() {
-        GameController.AllowMovement = false;
+
         PLayerHealth = 100;
         PlayerHB.value = 100;
 
+        GameController.AllowMovement = false;
 
-        SetterFOrBoxCollider(false);
-        anim.SetTrigger("KnockOut");
         GameController.instance.EnemyScoreUpdate();
-        GameController.instance.OnScreenPoinPupdate();
+        
+        
+
+        PlayerSetterFOrBoxCollider(false);
+        EnemyController.instance.EnemySetterFOrBoxCollider(false); 
+        
+        
+        anim.SetTrigger("KnockOut");
+       
         GameController.instance.Rounds();
-        if (GameController.EnemyScore == 2)
+        if (GameController.instance.EnemyScore == 2)
         {
             GameController.instance.DoReset();
+            resetCharacters();
+
+
         }
         else
         {
             StartCoroutine(resetCharacters());
 
         }
+        GameController.instance.OnScreenPoinPupdate();
     }
     IEnumerator resetCharacters()
     {
+
+
+        PLayerHealth = 100;
+        PlayerHB.value = 100;
+
         yield return new WaitForSeconds(4);
+        
         GameObject[] TheClone = GameObject.FindGameObjectsWithTag("Player");
         Transform t = TheClone[5].GetComponent<Transform>();
         

@@ -4,15 +4,15 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 16
-  productGUID: 00000000000000000000000000000000
+  productGUID: a1362b85ce5e5a24b8fad5fedcc6d7bb
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 0
+  defaultScreenOrientation: 3
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: OasisTechnology
   productName: AR COMBAT
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -161,13 +161,13 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.vuforia.engine.CoreSamplesUnity
+    Android: com.Oasis.Technology.ARCombat
     iPhone: com.vuforia.engine.CoreSamplesUnity
   buildNumber:
     iPhone: 0
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 16
-  AndroidTargetSdkVersion: 0
+  AndroidMinSdkVersion: 26
+  AndroidTargetSdkVersion: 28
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1

@@ -37,6 +37,7 @@ public class FixPanel : MonoBehaviour {
 
 	public void Refresh() {
 		SceneManager.LoadScene (CurrentScene);
+        GameController.AllowMovement = false;
 		
 	}
 
