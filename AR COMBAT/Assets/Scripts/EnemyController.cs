@@ -85,7 +85,7 @@ public class EnemyController : MonoBehaviour
             
              }
 
-        if (direction1.magnitude < 13f && direction1.magnitude > 8f && GameController.AllowMovement == true)
+        if (direction1.magnitude < 13f && direction1.magnitude > 7f && GameController.AllowMovement == true)
         {
 
 
@@ -102,7 +102,7 @@ public class EnemyController : MonoBehaviour
 
             anim1.ResetTrigger("KickEnemy");
         }
-        if (direction1.magnitude < 5f && direction1.magnitude > 4f && GameController.AllowMovement == true)
+        if (direction1.magnitude < 6f && direction1.magnitude > 4f && GameController.AllowMovement == true)
         {
 
 
@@ -121,7 +121,7 @@ public class EnemyController : MonoBehaviour
 
             anim1.ResetTrigger("Punch");
         }
-        if (direction1.magnitude > 0f && direction1.magnitude < 3f && GameController.AllowMovement == true)
+        if (direction1.magnitude > 0f && direction1.magnitude < 4f && GameController.AllowMovement == true)
         {
 
             anim1.SetTrigger("WalkBACK");

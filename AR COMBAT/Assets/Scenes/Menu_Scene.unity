@@ -2210,7 +2210,7 @@ PrefabInstance:
     - target: {fileID: 224310835228532776, guid: e4a44daee2cdaf941b4fcca5737bde8c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -33
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 224640563712165116, guid: e4a44daee2cdaf941b4fcca5737bde8c,
         type: 3}
@@ -2432,7 +2432,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299750676}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 63}
+  m_LocalPosition: {x: 0, y: 0, z: 62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1156651168}
@@ -2440,7 +2440,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 63, y: -179}
+  m_AnchoredPosition: {x: 64, y: -212}
   m_SizeDelta: {x: 314.2, y: 107.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1299750678
@@ -2934,6 +2934,95 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: a327413b88d6ee3459a5dfa762d2b6d2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0c01bd21ad742eebadb7ead404dfdf, type: 3}
+--- !u!1 &1641461661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1641461662}
+  - component: {fileID: 1641461664}
+  - component: {fileID: 1641461663}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1641461662
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641461661}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1846639185}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1641461663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641461661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 62
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "The AR COMBAT is User Define Target Augmented Realtiy Featured games. We
+    make a UDT Augmented Reality game that is playable in the open world (in a real
+    environment). We use Artificial Intelligence (AI) for enemy character.The system
+    provides a simple interface allowing user to start the game right away from the
+    \u201CMain Menu\u201D window. In the \u201CGame Scene\u201D users will be provided
+    with an Augmented UI that contains controller buttons (mainly for Fighting) through
+    which the game actions will be conducted. The Device camera will be accessed once
+    the game starts. User will have to look through the device screen for enemy or
+    hostile targets (spawns randomly around the user) and use the provided AR buttons
+    to interact. The \u201CGame Scene\u201D also has the option to restart or back
+    to main manu the game at any time."
+--- !u!222 &1641461664
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641461661}
+  m_CullTransparentMesh: 0
 --- !u!1 &1728576705
 GameObject:
   m_ObjectHideFlags: 0
@@ -3179,13 +3268,14 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -74}
   m_LocalScale: {x: 0.5923964, y: 0.38505, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1641461662}
   m_Father: {fileID: 1156651168}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 242, y: 424}
+  m_AnchoredPosition: {x: 241, y: 446}
   m_SizeDelta: {x: 627.5, y: -380.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1846639186
@@ -3201,7 +3291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0.23137255}
+  m_Color: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 0.1764706}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
